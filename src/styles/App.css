@@ -8,6 +8,38 @@ body, html, .app {
   scroll-behavior: smooth;
 }
 
+.intro-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.intro-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2e2e2e;
+}
+
+.intro-text p {
+  font-size: 1.5rem;
+  max-width: 400px;
+  color: #4e4e4e;
+  margin-top: 1rem;
+}
+
+.intro-logo {
+  height: 80px;
+  margin-left: auto;
+}
+
+.intro-silhouette {
+  height: 180px;
+  opacity: 0.3;
+  margin-left: 2rem;
+}
+
 .section {
   padding: 3rem 1rem;
   min-height: 100vh;
@@ -45,6 +77,68 @@ header {
   object-fit: cover;
 }
 
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.fixed-header .logo {
+  height: 40px;
+}
+
+.app {
+  background-image: url('../assets/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+.nav-links span {
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.nav-links span:hover {
+  color: #0077cc;
+}
+
+.nav-divider {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding-right: 0.5rem;
+}
+
+
 .intro-content {
   display: flex;
   flex-direction: row;
@@ -52,7 +146,7 @@ header {
   align-items: center;
   gap: 2rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1800px;
   margin: auto;
 }
 
@@ -72,11 +166,6 @@ header {
   object-fit: cover;
 }
 
-.presentation {
-  max-width: 300px;
-  margin: 0 auto;
-}
-
 
 .logo {
   height: 70%;
@@ -91,7 +180,7 @@ header {
 }
 
 .presentation {
-  text-align: center;
+  text-align: left;
   z-index: 1;
 }
 
@@ -100,7 +189,7 @@ header {
   top: 0; left: 0;
   width: 100%;
   height: 100vh;
-  background: url('../assets/wood-background.png') center/cover no-repeat;
+  background: url('../assets/background.png') center/cover no-repeat;
   opacity: 0.2;
   z-index: 0;
 }
