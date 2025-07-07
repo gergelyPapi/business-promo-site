@@ -1,5 +1,6 @@
 /* App.css */
 /* Base styles */
+
 body, html, .app {
   margin: 0;
   padding: 0;
@@ -41,12 +42,18 @@ body, html, .app {
 }
 
 .section {
-  padding: 3rem 1rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#services {
+  padding-left: 10rem;
+  padding-top: 10rem;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 header {
@@ -68,13 +75,6 @@ header {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.profile-pic {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .fixed-header {
@@ -104,7 +104,6 @@ header {
   background-attachment: fixed;
   min-height: 100vh;
 }
-
 
 .nav-links {
   position: absolute;
@@ -155,8 +154,16 @@ header {
   text-align: center;
 }
 
-.logo-col .logo {
-  max-width: 100px;
+.intro-column .logo-col {
+  flex: 2;
+}
+
+.logo-col .logo-pic {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* subtle soft shadow */
+  border-radius: 8px; /* optional for soft corners */
 }
 
 .pic-col .profile-pic {
@@ -164,11 +171,7 @@ header {
   height: 70%;
   border-radius: 50%;
   object-fit: cover;
-}
-
-
-.logo {
-  height: 70%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* soft black fade */
 }
 
 .lang-switch button {
@@ -184,6 +187,68 @@ header {
   z-index: 1;
 }
 
+.presentation h1 {
+    font-family: 'Merriweather', serif;
+}
+
+.presentation h2 {
+  font-family: 'Merriweather', serif;
+  text-align: justify;
+  margin: 0 auto 1.5rem auto;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #3a3a3a;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.presentation h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 0.9rem;
+    font-style:italic
+}
+
+.presentation p {
+  font-family: 'Merriweather', serif;
+  text-align: justify;
+  text-indent: 2em;
+  margin: 0 auto 1.5rem auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #3a3a3a;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.intro-footer p .presentation-sub-title {
+  font-weight: bold;
+}
+
+.intro-footer h1 {
+    font-family: 'Merriweather', serif;
+}
+
+.intro-footer h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.2rem;
+}
+
+.intro-footer h3, p {
+  font-family: 'Merriweather', serif;
+  text-align: justify;
+  text-indent: 2em;
+  margin: 0 auto 1.5rem auto;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.intro-footer p .presentation-sub-title {
+  font-weight: bold;
+}
+
 .background-img {
   position: absolute;
   top: 0; left: 0;
@@ -194,19 +259,57 @@ header {
   z-index: 0;
 }
 
+.arrow {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 0.2rem;
+}
+
+
 .service-card {
-  background: #f9f9f9;
-  padding: 1rem;
+  padding-left: 1rem;
   margin: 1rem 0;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+
+  h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #2a2a2a;
+    margin-bottom: 1.5rem;
+    text-align: 'left';
+    letter-spacing: 0.3px;
+  }
+
+  p {
+    font-family: 'Merriweather', serif;
+    text-align: justify;
+    text-indent: 2em;
+    max-width: 60ch;
+    margin: 0 auto 1.5rem auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #3a3a3a;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+}
+
+.service-card .content-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.service-card.expanded .content-wrapper {
+  max-height: 300px; /* or more, depending on content */
+  opacity: 1;
 }
 
 .service-card:hover {
-  background: #efefef;
+
 }
 
 .fade-in {
@@ -284,14 +387,6 @@ header {
 @media screen and (max-width: 768px) {
   .logo {
     height: 40px;
-  }
-
-  .presentation h1 {
-    font-size: 1.5rem;
-  }
-
-  .presentation p {
-    font-size: 1rem;
   }
 }
 

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import logo from './assets/logo_picture_only.png';
 import profile from './assets/profile.jpeg';
 import ServiceCard from './components/ServiceCard/serviceCard';
-import ArticleCard from './components/ArticleCard/articleCard';
 import background from './assets/background.png';
 
 function App() {
@@ -71,13 +70,15 @@ function App() {
       <header className="fixed-header" tabIndex={-1}>
         <img src={logo} alt="Business Logo" className="logo" tabIndex={-1} />
         <nav className="nav-links" tabIndex={-1}>
-          <span onClick={() => scrollToSection('intro')} tabIndex={-1}>Intro</span>
+          <span onClick={() => scrollToSection('welcome')} tabIndex={-1}>Kezdőlap</span>
           <span className="nav-divider" tabIndex={-1}>|</span>
-          <span onClick={() => scrollToSection('services')} tabIndex={-1}>Services</span>
+          <span onClick={() => scrollToSection('intro')} tabIndex={-1}>Bevezetés</span>
           <span className="nav-divider" tabIndex={-1}>|</span>
-          <span onClick={() => scrollToSection('knowledge')} tabIndex={-1}>Knowledge</span>
+          <span onClick={() => scrollToSection('services')} tabIndex={-1}>Szolgáltatások</span>
           <span className="nav-divider" tabIndex={-1}>|</span>
-          <span onClick={() => scrollToSection('contact')} tabIndex={-1}>Contact</span>
+          {/* <span onClick={() => scrollToSection('knowledge')} tabIndex={-1}>Tudástár</span>
+          <span className="nav-divider" tabIndex={-1}>|</span> */}
+          <span onClick={() => scrollToSection('contact')} tabIndex={-1}>Kapcsolatok</span>
         </nav>
         <div className="lang-switch" tabIndex={-1}>
           <button onClick={() => setLanguage('HUN')} tabIndex={-1}>HUN</button>
@@ -87,12 +88,52 @@ function App() {
 
       {/* SubPage 1: Welcome page */}
       <div className="section-divider"></div>
+      <section className="section welcome" id="welcome" tabIndex={-1}>
+        <div className="intro-content" tabIndex={-1}>
+          <div className="intro-column logo-col" tabIndex={-1}>
+            <img src={logo} alt="Profile" className="logo-pic" tabIndex={-1} />
+          </div>
+          <div className="intro-column text-col" tabIndex={-1}>
+            <div className="presentation" tabIndex={-1}>
+              <h1 tabIndex={-1}>dr. Szomor Zsófia Anna LL.M.</h1>
+              <h3 tabIndex={-1}>ügyvéd</h3>
+              <h3 tabIndex={-1}>közlekedési szakjogász</h3>
+              <h2 tabIndex={-1}>Forduljon bizalommal hozzám, ha szakszerű, hatékony és precíz jogi segítségnyújtásra van szüksége a büntetőjog, cégeljárás, ingatlan adásvétel, ajándékozás, valamint a családjog területén.</h2>
+            </div>
+          </div>
+          <div className="intro-column pic-col" tabIndex={-1}>
+            <img src={profile} alt="Profile" className="profile-pic" tabIndex={-1} />
+          </div>
+        </div>
+        <footer className="intro-footer" tabIndex={-1}>
+          <h3 tabIndex={-1}>Elérhetőségek</h3>
+          <p tabIndex={-1}>
+            <span className='presentation-sub-title'>Tel. szám:</span>
+            <span className='presentation-sub-content'> +36309713467</span>
+          </p>
+          <p tabIndex={-1}>
+            <span className='presentation-sub-title'>Email:</span>
+            <span className='presentation-sub-content'> drszomorzsofia@gmail.com</span>
+          </p>
+          <p tabIndex={-1}>
+            <span className='presentation-sub-title'>Cím:</span>
+            <span className='presentation-sub-content'> 1137 Budapest, Szent István krt. 18. 2. em. 4/A.</span>
+          </p>
+        </footer>
+      </section>
+
+      {/* SubPage 2: Intro page */}
+      <div className="section-divider"></div>
       <section className="section intro" id="intro" tabIndex={-1}>
         <div className="intro-content" tabIndex={-1}>
           <div className="intro-column text-col" tabIndex={-1}>
             <div className="presentation" tabIndex={-1}>
-              <h1 tabIndex={-1}>dr. Szomor Zsófia Anna LL.M. ügyvéd közlekedési szakjogász</h1>
-              <p tabIndex={-1}>Forduljon bizalommal hozzám, ha szakszerű, hatékony és precíz jogi segítségnyújtásra van szüksége a büntetőjog, cégeljárás, ingatlan adásvétel/ ajándékozás, valamint a családjog területén.</p>
+              <p tabIndex={-1}>Dr. Szomor Zsófia Anna ügyvéd vagyok. Jogi tanulmányaimat a Szegedi Tudományegyetem Állam- és Jogtudományi Karán végeztem. Egyetemi éveim során Bűnügyi Modulon specializálódtam, mely által mélyebb és átfogóbb tudást szereztem a büntetőjog területén. 
+                  Diplomám megszerzését követően több mint 3 évig egy magas szakmai színvonalú budapesti ügyvédi irodánál dolgoztam ügyvédjelöltként, ahol elméleti tudásom mellé mélyreható gyakorlati tapasztalatot szereztem több jogterületen is.
+                  Ügyvédjelölti pályafutásom alatt számos bírósági eljárásban képviseltem Ügyfeleinket, és sikeres jogi tanácsadások révén számos esetben mozdítottam elő jogi problémáik megoldását.
+                  Ügyvédjelölti éveim alatt közlekedési szakjogászi képesítést szereztem a Pázmány Péter Katolikus Egyetem Állam- és Jogtudományi Karán.
+                  Ügyvédi hivatásom gyakorlása során határozott célom, hogy nagy fokú szakmai alázattal, elhivatottsággal és felkészültséggel segítsek Ügyfeleimnek,
+                  jogaik és érdekeik érvényesítésében. Kiemelt figyelmet fordítok továbbá a megbízhatóságra, empátiára, a precizitásra és a hatékony kommunikációra, annak érdekében, hogy Ügyfeleim jogi problémái minél gyorsabban és eredményesen megoldódjanak.</p>
             </div>
           </div>
           <div className="intro-column pic-col" tabIndex={-1}>
@@ -104,12 +145,25 @@ function App() {
       {/* SubPage 2: Services */}
       <section className="section services" id="services" tabIndex={-1}>
         <h2 tabIndex={-1}>Our Services</h2>
-        <ServiceCard title="Contract Law" details="We draft and review contracts..." />
-        <ServiceCard title="Litigation" details="Representation in court cases..." />
+        <ServiceCard 
+          title="Védelem ellátása a nyomozás, valamint a bírósági eljárás során"
+          details="A büntetőeljárási törvényünk értelmében a terheltnek a büntetőeljárás minden szakaszában joga
+           van a hatékony védelemhez, melybe beletartozik, hogy védő közreműködését vegye igénybe védelme ellátására. Védőként legfőbb 
+           célom, hogy Ügyfeleim védelmét már a nyomozás kezdetétől hatékonyan, precízen lássam el, 
+           és biztosítsam számukra a jogállamiság keretei között a tisztességes eljárást. A védelem ellátása során
+            nagy fokú szakmai alázattal, kellő empátiával és felkészültséggel képviselem Ügyfeleimet, továbbá mindig
+             arra törekszem, hogy Ügyfeleimet részletesen tájékoztassam az aktuális jogi helyzetükről, a lehetséges következményekről,
+              és a védelmi stratégiák lehetőségeiről. Kiemelt
+               figyelmet fordítok arra, hogy minden esetben Ügyfeleim legfőbb érdekei szerint járjak el és jogaikat a hatóságok, bíróságok maradéktalanul tiszteletben tartsák.
+               
+            Ha büntetőügyben Önnek vagy hozzátartozójának védőre van szüksége, keressen bizalommal!"
+          articleId="article1"
+        />
+        <ServiceCard title="Litigation" details="Representation in court cases..." articleId="article2" />
       </section>
 
       {/* SubPage 3: Knowledge Base */}
-      <div className="section-divider"></div>
+      {/* <div className="section-divider"></div>
       <section className="section knowledge" id="knowledge" tabIndex={-1}>
         <h2 tabIndex={-1}>Case Studies</h2>
         <div className="articles" tabIndex={-1}>
@@ -120,7 +174,7 @@ function App() {
             onClick={setArticleOverlay}
           />
         </div>
-      </section>
+      </section> */}
 
       {/* Article Overlay */}
       {articleOverlay && (
