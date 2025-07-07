@@ -1,15 +1,21 @@
 // React App with tab targeting only enabled on contact section
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import logo from './assets/logo_picture_only.png';
 import profile from './assets/profile.jpeg';
 import ServiceCard from './components/ServiceCard/serviceCard';
 import background from './assets/background.png';
+import {services} from "./components/ServiceCard/services";
 
 function App() {
   const [language, setLanguage] = useState('ENG');
   const [articleOverlay, setArticleOverlay] = useState(null);
   const [isContactVisible, setIsContactVisible] = useState(false);
+  const [expandedServiceId, setExpandedServiceId] = useState(null);
+
+  const toggleService = (id) => {
+    setExpandedServiceId((prev) => (prev === id ? null : id));
+  };
 
   useEffect(() => {
     const sections = document.querySelectorAll('.section');
@@ -127,14 +133,12 @@ function App() {
       <section className="section intro" id="intro" tabIndex={-1}>
         <div className="intro-content" tabIndex={-1}>
           <div className="intro-column text-col" tabIndex={-1}>
-            <div className="presentation" tabIndex={-1}>
-              <p tabIndex={-1}>Dr. Szomor Zsófia Anna ügyvéd vagyok. Jogi tanulmányaimat a Szegedi Tudományegyetem Állam- és Jogtudományi Karán végeztem. Egyetemi éveim során Bűnügyi Modulon specializálódtam, mely által mélyebb és átfogóbb tudást szereztem a büntetőjog területén. 
-                  Diplomám megszerzését követően több mint 3 évig egy magas szakmai színvonalú budapesti ügyvédi irodánál dolgoztam ügyvédjelöltként, ahol elméleti tudásom mellé mélyreható gyakorlati tapasztalatot szereztem több jogterületen is.
-                  Ügyvédjelölti pályafutásom alatt számos bírósági eljárásban képviseltem Ügyfeleinket, és sikeres jogi tanácsadások révén számos esetben mozdítottam elő jogi problémáik megoldását.
-                  Ügyvédjelölti éveim alatt közlekedési szakjogászi képesítést szereztem a Pázmány Péter Katolikus Egyetem Állam- és Jogtudományi Karán.
-                  Ügyvédi hivatásom gyakorlása során határozott célom, hogy nagy fokú szakmai alázattal, elhivatottsággal és felkészültséggel segítsek Ügyfeleimnek,
-                  jogaik és érdekeik érvényesítésében. Kiemelt figyelmet fordítok továbbá a megbízhatóságra, empátiára, a precizitásra és a hatékony kommunikációra, annak érdekében, hogy Ügyfeleim jogi problémái minél gyorsabban és eredményesen megoldódjanak.</p>
-            </div>
+          <div className='presentation'>
+            <p>Dr. Szomor Zsófia Anna ügyvéd vagyok. Jogi tanulmányaimat a Szegedi Tudományegyetem Állam- és Jogtudományi Karán végeztem. Egyetemi éveim során Bűnügyi Modulon specializálódtam, mely által mélyebb és átfogóbb tudást szereztem a büntetőjog területén.</p>
+            <p>Diplomám megszerzését követően több mint 3 évig egy magas szakmai színvonalú budapesti ügyvédi irodánál dolgoztam ügyvédjelöltként, ahol elméleti tudásom mellé mélyreható gyakorlati tapasztalatot szereztem több jogterületen is. Ügyvédjelölti pályafutásom alatt számos bírósági eljárásban képviseltem Ügyfeleinket, és sikeres jogi tanácsadások révén számos esetben mozdítottam elő jogi problémáik megoldását.</p>
+            <p>Ügyvédjelölti éveim alatt közlekedési szakjogászi képesítést szereztem a Pázmány Péter Katolikus Egyetem Állam- és Jogtudományi Karán.</p>
+            <p>Ügyvédi hivatásom gyakorlása során határozott célom, hogy nagy fokú szakmai alázattal, elhivatottsággal és felkészültséggel segítsek Ügyfeleimnek, jogaik és érdekeik érvényesítésében. Kiemelt figyelmet fordítok továbbá a megbízhatóságra, empátiára, a precizitásra és a hatékony kommunikációra, annak érdekében, hogy Ügyfeleim jogi problémái minél gyorsabban és eredményesen megoldódjanak.</p>
+          </div>
           </div>
           <div className="intro-column pic-col" tabIndex={-1}>
             <img src={profile} alt="Profile" className="profile-pic" tabIndex={-1} />
@@ -144,22 +148,17 @@ function App() {
 
       {/* SubPage 2: Services */}
       <section className="section services" id="services" tabIndex={-1}>
-        <h2 tabIndex={-1}>Our Services</h2>
-        <ServiceCard 
-          title="Védelem ellátása a nyomozás, valamint a bírósági eljárás során"
-          details="A büntetőeljárási törvényünk értelmében a terheltnek a büntetőeljárás minden szakaszában joga
-           van a hatékony védelemhez, melybe beletartozik, hogy védő közreműködését vegye igénybe védelme ellátására. Védőként legfőbb 
-           célom, hogy Ügyfeleim védelmét már a nyomozás kezdetétől hatékonyan, precízen lássam el, 
-           és biztosítsam számukra a jogállamiság keretei között a tisztességes eljárást. A védelem ellátása során
-            nagy fokú szakmai alázattal, kellő empátiával és felkészültséggel képviselem Ügyfeleimet, továbbá mindig
-             arra törekszem, hogy Ügyfeleimet részletesen tájékoztassam az aktuális jogi helyzetükről, a lehetséges következményekről,
-              és a védelmi stratégiák lehetőségeiről. Kiemelt
-               figyelmet fordítok arra, hogy minden esetben Ügyfeleim legfőbb érdekei szerint járjak el és jogaikat a hatóságok, bíróságok maradéktalanul tiszteletben tartsák.
-               
-            Ha büntetőügyben Önnek vagy hozzátartozójának védőre van szüksége, keressen bizalommal!"
-          articleId="article1"
-        />
-        <ServiceCard title="Litigation" details="Representation in court cases..." articleId="article2" />
+        <h2 tabIndex={-1}>Szolgáltatások</h2>
+        {services.map((service) => (
+          <ServiceCard
+            key={service.serviceId}
+            title={service.title}
+            details={service.details}
+            articleId={service.serviceId}
+            isExpanded={expandedServiceId === service.serviceId}
+            onToggle={() => toggleService(service.serviceId)}
+          />
+        ))}
       </section>
 
       {/* SubPage 3: Knowledge Base */}
@@ -190,19 +189,27 @@ function App() {
       {/* SubPage 4: Contact */}
       <div className="section-divider"></div>
       <section className="section contact" id="contact">
-        <h2 tabIndex={isContactVisible ? 0 : -1}>Contact Us</h2>
-        <div className="contact-details">
-          <p tabIndex={isContactVisible ? 0 : -1}>Email: contact@lawxyz.com</p>
-          <p tabIndex={isContactVisible ? 0 : -1}>Phone: +36 30 123 4567</p>
+        <div className="contact-content">
+          <h2 tabIndex={isContactVisible ? 0 : -1}>Kapcsolatok</h2>
+          <div className="contact-details">
+            <p tabIndex={-1}>
+              <span className='contact-details-sub-title'>Tel. szám:</span>
+              <span className='contact-details-sub-content'> +36309713467</span>
+            </p>
+            <p tabIndex={-1}>
+              <span className='contact-details-sub-title'>Email:</span>
+              <span className='contact-details-sub-content'> drszomorzsofia@gmail.com</span>
+            </p>
+          </div>
+          <form className="contact-form">
+            <input type="email" placeholder="Az ön email címe" required tabIndex={isContactVisible ? 0 : -1} />
+            <textarea placeholder="Az ön üzenete" required tabIndex={isContactVisible ? 0 : -1}></textarea>
+            <button type="submit" tabIndex={isContactVisible ? 0 : -1}>Üzenet küldése</button>
+          </form>
         </div>
-        <form className="contact-form">
-          <input type="email" placeholder="Your Email" required tabIndex={isContactVisible ? 0 : -1} />
-          <textarea placeholder="Your Message" required tabIndex={isContactVisible ? 0 : -1}></textarea>
-          <button type="submit" tabIndex={isContactVisible ? 0 : -1}>Send Message</button>
-        </form>
-        <div className="legal-text">
-          <p tabIndex={isContactVisible ? 0 : -1}>Legal information goes here (TBD).</p>
-        </div>
+        <footer className="contact-footer" tabIndex={-1}>
+          Legal text
+        </footer>
       </section>
     </div>
   );

@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function ServiceCard({ title, details, articleId }) {
-  const [open, setOpen] = useState(false);
-  const [expandedArticleId, setExpandedArticleId] = useState(null);
+function ServiceCard({ title, details, articleId, isExpanded, onToggle }) {
+  const [visible, setVisible] = useState(false);
+  const [fadeClass, setFadeClass] = useState("");
+
+  useEffect(() => {
+    if (isExpanded) {
+      setVisible(true);
+      setFadeClass(""); // Reset class first
+      setTimeout(() => setFadeClass("fade-in"), 10);
+    } else if (visible) {
+      setFadeClass("fade-out");
+      const timeout = setTimeout(() => setVisible(false), 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [isExpanded]);
 
   return (
-    <div 
-      className={`service-card ${open ? 'expanded' : ''}`}
-      onClick={() => setOpen(!open)}
-      isExpanded={expandedArticleId === articleId}
-      onToggle={() => setExpandedArticleId(expandedArticleId === articleId ? null : articleId)}
+    <div
+      className={`service-card ${isExpanded ? "expanded" : ""}`}
+      onClick={onToggle}
     >
-      <span className="arrow">➤</span>
-      <h3>{title}</h3>
-      <div className="content-wrapper">
-        {open && <p className="fade-in">{details}</p>}
+      <div tabIndex={-1} className="service-header">
+        <span className="arrow">➤</span>
+        <h3>{title}</h3>
       </div>
+      {visible && (
+        <div className={`service-details ${fadeClass}`}>
+          <p>{details}</p>
+        </div>
+      )}
     </div>
   );
 }
