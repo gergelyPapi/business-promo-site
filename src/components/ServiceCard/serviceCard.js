@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-function ServiceCard({ title, details, articleId, isExpanded, onToggle }) {
+function ServiceCard({ title, pgraphs, articleId, isExpanded, onToggle }) {
   const [visible, setVisible] = useState(false);
   const [fadeClass, setFadeClass] = useState("");
 
   useEffect(() => {
     if (isExpanded) {
       setVisible(true);
-      setFadeClass(""); // Reset class first
+      setFadeClass("");
       setTimeout(() => setFadeClass("fade-in"), 10);
     } else if (visible) {
       setFadeClass("fade-out");
@@ -19,15 +19,16 @@ function ServiceCard({ title, details, articleId, isExpanded, onToggle }) {
   return (
     <div
       className={`service-card ${isExpanded ? "expanded" : ""}`}
-      onClick={onToggle}
     >
-      <div tabIndex={-1} className="service-header">
+      <div tabIndex={-1} className="service-header" onClick={onToggle}>
         <span className="arrow">➤</span>
         <h3>{title}</h3>
       </div>
-      {visible && (
+      {visible && pgraphs && (
         <div className={`service-details ${fadeClass}`}>
-          <p>{details}</p>
+          {pgraphs.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
         </div>
       )}
     </div>

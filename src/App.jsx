@@ -154,6 +154,7 @@ function App() {
             key={service.serviceId}
             title={service.title}
             details={service.details}
+            pgraphs={service.paragraphs}
             articleId={service.serviceId}
             isExpanded={expandedServiceId === service.serviceId}
             onToggle={() => toggleService(service.serviceId)}
@@ -208,7 +209,7 @@ function App() {
           </form>
         </div>
         <footer className="contact-footer" tabIndex={-1}>
-          Legal text
+          Insert Legal text
         </footer>
       </section>
     </div>

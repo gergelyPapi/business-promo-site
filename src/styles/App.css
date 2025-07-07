@@ -283,9 +283,21 @@ header {
 }
 
 .service-card {
-  width: 90%;
+  background-image:
+  linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0)),
+  url('../assets//oak-texture.png'),
+  linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  width: fit-content;
+  max-width: 90%;
   padding: 1rem;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .service-header {
@@ -326,18 +338,19 @@ header {
   margin-top: 0.75rem;
   opacity: 0;
   transform: translateY(-4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  margin-top: 0.75rem;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease;
 }
 
 .fade-in {
   opacity: 1;
   transform: translateY(0);
+  max-height: fit-content;
 }
 
 .fade-out {
   opacity: 0;
   transform: translateY(-4px);
+  max-height: 0;
 }
 
 .overlay {
@@ -408,7 +421,6 @@ header {
   color: #666;
 }
 
-/* Base layout for full section */
 .section.contact {
   display: flex;
   flex-direction: column;
@@ -416,7 +428,6 @@ header {
   justify-content: space-between;
 }
 
-/* Content part: 60% height */
 .contact-content {
   display: flex;
   flex-direction: column;
